@@ -1,6 +1,7 @@
 #include "masking.h"
 #include "negation.h"
 #include "overflow.h"
+#include "rounding.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -30,11 +31,20 @@ void overflow_test() {
   printf("PASSED\n");
 }	
 
+void rounding_test() {
+  printf("Running test: rounding_test ... ");
+  assert(nearest_even(17, 3) == 16); 
+  assert(nearest_even(16, 3) == 16); 
+  assert(nearest_even(15, 3) == 16); 
+  printf("PASSED\n");
+}
+
 int main(void) {
   printf("Testing...\n");
   masking_test();
   negation_test();
   overflow_test();
+  rounding_test();
   printf("Tests passed.\n");
   return 0;
 }

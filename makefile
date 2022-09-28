@@ -1,5 +1,5 @@
 FLAGS= -Wall -Wextra -Werror -pedantic
-OBJS=masking.o negation.o overflow.o
+OBJS=masking.o negation.o overflow.o rounding.o
 BINS=tests
 
 tests: tests.c  $(OBJS)
@@ -13,6 +13,9 @@ negation.o:
 	
 overflow.o:
 	cc $(FLAGS) -c overflow.c
+
+rounding.o: masking.o
+	cc $(FLAGS) -c rounding.c masking.o
 
 clean:
 	rm $(OBJS) $(BINS)
